@@ -38,7 +38,7 @@ router.get('/admin', async (req, res) => {
   try {
     const locals = {
       title: "Admin",
-      description: "Fashionista's Fables • Navigating Trends with Ease"
+      description: "Simple Blog created with NodeJs, Express & MongoDb."
     }
 
     res.render('admin/index', { locals, layout: adminLayout });
@@ -86,7 +86,7 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
   try {
     const locals = {
       title: 'Dashboard',
-      description: 'Fashionista Fables Navigating Trends with Ease'
+      description: 'Simple Blog created with NodeJs, Express & MongoDb.'
     }
 
     const data = await Post.find();

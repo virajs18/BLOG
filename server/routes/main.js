@@ -9,8 +9,8 @@ const Post = require('../models/Post');
 router.get('', async (req, res) => {
   try {
     const locals = {
-      title: "Blog website",
-      description: "created this website using html, css, javascript & mongodb"
+      title: "NodeJs Blog",
+      description: "Simple Blog created with NodeJs, Express & MongoDb."
     }
 
     let perPage = 10;
@@ -43,8 +43,8 @@ router.get('', async (req, res) => {
 
 // router.get('', async (req, res) => {
 //   const locals = {
-//     title: "Fashionista's Fables",
-//     description: "Navigating Trends with Ease"
+//     title: "NodeJs Blog",
+//     description: "Simple Blog created with NodeJs, Express & MongoDb."
 //   }
 
 //   try {
@@ -69,10 +69,14 @@ router.get('/post/:id', async (req, res) => {
 
     const locals = {
       title: data.title,
-      description: "Navigating Trends with Ease",
+      description: "Simple Blog created with NodeJs, Express & MongoDb.",
     }
 
-    res.render('post', { locals, data });
+    res.render('post', { 
+      locals,
+      data,
+      currentRoute: `/post/${slug}`
+    });
   } catch (error) {
     console.log(error);
   }
@@ -88,7 +92,7 @@ router.post('/search', async (req, res) => {
   try {
     const locals = {
       title: "Seach",
-      description: "Navigating Trends with Ease"
+      description: "Simple Blog created with NodeJs, Express & MongoDb."
     }
 
     let searchTerm = req.body.searchTerm;
@@ -100,9 +104,11 @@ router.post('/search', async (req, res) => {
         { body: { $regex: new RegExp(searchNoSpecialChar, 'i') }}
       ]
     });
-    res.render("search", { 
+
+    res.render("search", {
       data,
-      locals
+      locals,
+      currentRoute: '/'
     });
 
   } catch (error) {
@@ -126,48 +132,49 @@ router.get('/about', (req, res) => {
 // function insertPostData () {
 //   Post.insertMany([
 //     {
-//       title: "Latest Fashion Trends",
-//       body: "Check out the newest styles and trends for this season. From bright colors to cool patterns, find out what's hot right now."
+//       title: "Building APIs with Node.js",
+//       body: "Learn how to use Node.js to build RESTful APIs using frameworks like Express.js"
 //     },
 //     {
-//       title: "Accessorize Your Look",
-//       body: "Learn how to add accessories to your outfits. Jewelry, bags, and more – discover easy ways to upgrade your style."
+//       title: "Deployment of Node.js applications",
+//       body: "Understand the different ways to deploy your Node.js applications, including on-premises, cloud, and container environments..."
 //     },
 //     {
-//       title: "Go Green with Fashion",
-//       body: "Explore eco-friendly fashion choices. Find out about clothes that are good for the planet and where to get them."
+//       title: "Authentication and Authorization in Node.js",
+//       body: "Learn how to add authentication and authorization to your Node.js web applications using Passport.js or other authentication libraries."
 //     },
 //     {
-//       title: "Dress Like a Star",
-//       body: "Get fashion inspiration from your favorite celebrities. See what they wear on the red carpet and how you can get the look."
+//       title: "Understand how to work with MongoDB and Mongoose",
+//       body: "Understand how to work with MongoDB and Mongoose, an Object Data Modeling (ODM) library, in Node.js applications."
 //     },
 //     {
-//       title: "DIY Fashion Fun",
-//       body: "Try your hand at fashion projects. Learn to transform old clothes into something new and express your unique style."
+//       title: "build real-time, event-driven applications in Node.js",
+//       body: "Socket.io: Learn how to use Socket.io to build real-time, event-driven applications in Node.js."
 //     },
 //     {
-//       title: "Wardrobe Essentials",
-//       body: "Simplify your closet with key pieces. Discover timeless clothes that go with everything and make getting dressed easy."
+//       title: "Discover how to use Express.js",
+//       body: "Discover how to use Express.js, a popular Node.js web framework, to build web applications."
 //     },
 //     {
-//       title: "Fashion Week Behind the Scenes",
-//       body: "See what happens behind the scenes at fashion week. From models to makeup, get a sneak peek into the world of high fashion."
+//       title: "Asynchronous Programming with Node.js",
+//       body: "Asynchronous Programming with Node.js: Explore the asynchronous nature of Node.js and how it allows for non-blocking I/O operations."
 //     },
 //     {
-//       title: "Cultural Style Influences",
-//       body: "Explore how different cultures inspire fashion. Learn about styles from around the world and how to mix them into your own look."
+//       title: "Learn the basics of Node.js and its architecture",
+//       body: "Learn the basics of Node.js and its architecture, how it works, and why it is popular among developers."
 //     },
 //     {
-//       title: "Confident Style Tips",
-//       body: "Find out how your clothes can boost your confidence. Learn to express yourself through fashion and feel great about it."
+//       title: "NodeJs Limiting Network Traffic",
+//       body: "Learn how to limit netowrk traffic."
 //     },
 //     {
-//       title: "Simple Wardrobe Tips",
-//       body: "Get tips for a simple and stylish wardrobe. Learn about classic pieces that never go out of style."
+//       title: "Learn Morgan - HTTP Request logger for NodeJs",
+//       body: "Learn Morgan."
 //     },
 //   ])
 // }
 
 // insertPostData();
+
 
 module.exports = router;
